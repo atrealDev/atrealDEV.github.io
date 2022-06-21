@@ -1,0 +1,986 @@
+/* RESET */
+*,*::before,*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* ************UTILITY COMPONNENTs ************/
+:root {
+    font-size: 62.5%;
+    /*********** custom prop ************/
+    /* custom colors */
+    --color-primary: #730039;
+    --color-primary-m-light: hsla(330, 100%, 23%, 0.55);
+    --color-primary-m-dark: hsla(330, 100%, 23%, 0.85);
+  
+    --color-secondary: #ffc513;
+    --color-secondary-m-light: hsla(45, 100%, 54%, 0.55);
+    --color-secondary-m-dark: rgba(255, 196, 19, 0.85);
+  
+    --color-tertiary: #ff724c;
+    --color-tertiary-m-light: hsla(13, 100%, 65%, 0.55);
+    --color-tertiary-m-dark: rgba(255, 115, 76, 0.85);
+  
+    --color-quaternary: #f6eedf;
+    --color-quaternary-m-light: hsla(39, 56%, 92%, 0.55);
+    --color-quaternary-m-dark: hsla(39, 56%, 92%, 0.85);
+    /********** TRANSITION****** */
+    --transition-duration: 0.3s ;
+
+    /* section title font size  */
+    --font-size-title: calc(2rem + 2vw) ;
+    /* Section padding */
+    --padding-section: 8vh 3vw ;
+
+}
+body {
+    font-family: 'Titillium Web' , sans-serif;
+    line-height: 1.7;
+    background-color: var(--color-quaternary);
+}
+.container {
+    display: grid;
+    grid-template-columns:
+      [container-start] 1fr [center-start] repeat(
+        10,
+        [col-start] minmax(min-content, 11rem) [col-end]
+      )
+      [center-end] 1fr [container-end];
+    grid-template-rows: 100vh repeat(8, min-content);
+  }
+/* Anchor tags */
+a:link,a:visited {
+    color: var(--color-quaternary);
+    text-decoration: none;
+    font-size: calc(0.5rem + 1vw);
+    padding: 1rem 2rem;
+    border-radius: 0.3rem;
+    position: relative;
+    transition: all var(--transition-duration) cubic-bezier(1, 0, 0 , 1);
+    z-index: 1;
+}
+/* paragraphs */
+p {
+    color: white;
+    font-size: calc(1rem + 1vw);
+    font-weight: 200;
+}
+/* list items  */
+li {
+    list-style: none;
+    margin-bottom: 4rem;
+}
+/* ICONS */
+i {
+    font-size: var(--font-size-title);
+    color: var(--color-secondary);
+}
+/***************** MAIN STYLE ************/
+/******** header  ********/
+header#header {
+    text-align: center;
+grid-column: container-start / container-end;
+background:  linear-gradient(var(--color-primary-m-light),var(--color-primary-m-light)),url("./img-lsv/hero/hero.jpg");
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+/* NAV */
+.header__main-nav {
+ position: fixed;
+ top:0 ;
+ left: 0;
+ z-index: 6;
+}
+.header__main-nav input[type=checkbox] {
+ position: absolute;
+ top: 3rem;
+ left: 3rem;
+ height: 5rem;
+ width: 5rem;
+ opacity: 0;
+ cursor: pointer;
+ z-index: 3;
+}
+/* HAMBURGER */
+.header__main-nav--hamburger {
+    position: absolute;
+    top: 3rem;
+ left: 3rem;
+ height: 5rem;
+ width: 5rem;
+ padding: 1rem;
+ background-color: var(--color-secondary);
+ z-index: 2;
+ display: grid;
+ place-items: center;
+ animation: main-nav 2s ;
+}
+@keyframes main-nav {
+    0% {
+        transform: translateX(150rem) rotate(1800deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) rotate(0);
+        opacity: 1;
+    }
+}
+/* logo and content container */
+.header__logo__content {
+    display: grid;
+    grid-template-columns: 1fr minmax(30rem, 1fr) 1fr;
+    grid-template-rows: min-content;
+    height: 90%;
+    justify-items: center;
+}
+.header__logo__content--logo {
+ grid-column: 2 / 3;
+ letter-spacing: 0.4rem;
+
+}
+.header__logo__content--content {
+    grid-column: 1 / -1;
+    align-self: center;
+}
+.header__logo__content--logo span {
+    color: var(--color-tertiary);
+    font-size: 3rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+.header__logo__content--logo__s {
+    display: inline;
+    color: white;
+    font-size: 2.5rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+.header__logo__content--content__title {
+    font-size: calc(4rem + 4vw);
+    font-weight: 300;
+    color: white;
+    text-transform: uppercase;
+    padding: 0 2rem 0 var(--font-size-title);
+}
+.header__logo__content--content__para {
+    font-size: calc(1rem + 2vw);
+    font-weight: 500;
+    padding: 2vh 2rem 6vh var(--font-size-title);
+}
+.header__logo__content--content__link:visited,.header__logo__content--content__link:link {
+ margin-left: var(--font-size-title);
+ border: 0.2rem solid var(--color-tertiary);
+}
+.header__logo__content--content__link:visited::before,.header__logo__content--content__link:link::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+background-color: var(--color-tertiary);
+transform: scaleX(0);
+transition: transform 0.45s cubic-bezier(1, 0, 0 ,1);
+z-index: -1;
+}
+.header__logo__content--content__link:hover::before,.header__logo__content--content__link:active::before {
+    transform: scaleX(1);
+}
+/* HAMBURGER ALIGNMENT */
+.header__main-nav--hamburger > div {
+ position: relative;
+ height: 0.3rem;
+ width: 100%;
+ background-color: var(--color-quaternary);
+ display: grid;
+ place-items: center;
+ transition: var(--transition-duration) all ease-in-out;
+}
+/* hamburger top and bottom lines*/
+.header__main-nav--hamburger > div::before,.header__main-nav--hamburger > div::after {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    width: 60%;
+    height: inherit;
+    background-color: inherit;
+    z-index: 2;
+}
+.header__main-nav--hamburger > div::before {
+    left: 0;
+}
+.header__main-nav--hamburger > div::after {
+    top: 1rem;
+    right: 0;
+}
+/* rotating the  menu */
+.header__main-nav input[type=checkbox]:checked + .header__main-nav--hamburger > div {
+    transform: rotate(135deg) ;
+
+}
+.header__main-nav input[type=checkbox]:checked + .header__main-nav--hamburger > div::before {
+    left: 0;
+    top: 0;
+    width: 100%;
+    transform:  rotate(270deg);
+}
+.header__main-nav input[type=checkbox]:checked + .header__main-nav--hamburger > div::after {
+    opacity: 0;
+}
+.header__main-nav input[type=checkbox]:checked:hover + .header__main-nav--hamburger > div {
+    transform: rotate(405deg);
+
+}
+/* link menu  */
+.header__main-nav--menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+ visibility: hidden;
+ overflow: hidden;
+ display: grid;
+ place-items: center;
+
+}
+.header__main-nav--menu > div {
+     background-color: var(--color-secondary-m-dark);
+     height: 200%;
+     width: 200%;
+     display: grid; 
+     place-items: center; 
+     transition: all 0.5s ease-in-out;
+     transform: scaleX(0); 
+}
+
+.header__main-nav--menu > div > div {
+     text-align: center;
+     max-width: 90vw;
+     max-height: 100vh;
+     opacity: 0;
+     transition: opacity 0.5s ease-in-out;
+}
+
+
+/* display the menu when the checkbox is checked  */
+.header__main-nav input[type=checkbox]:checked ~ .header__main-nav--menu {
+    visibility: visible;
+}
+.header__main-nav input[type=checkbox]:checked ~ .header__main-nav--menu > div {
+    transform: scaleX(1);
+    transition-duration:0.5s ;
+}
+.header__main-nav input[type=checkbox]:checked ~ .header__main-nav--menu > div > div {
+    opacity: 1;
+}
+.header__main-nav--menu ul li a:link,.header__main-nav--menu ul li a:visited {
+z-index: 5;
+font-size: calc(1.5rem + 0.5vw );
+}
+.header__main-nav--menu ul li a:link::before,.header__main-nav--menu ul li a:visited::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+transform: scaleY(0);
+background-color: var(--color-primary-m-dark);
+transition: transform var(--transition-duration) ease-in-out;
+}
+.header__main-nav--menu ul li a:hover::before,.header__main-nav--menu ul li a:active::before {
+    transform: scaleY(1);
+}
+/* booking content section */
+section#booking-content,#booking-content--apar {
+    background-color: var(--color-quaternary);
+    grid-column: col-start / col-end 6;
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    grid-gap: 2vh;
+    margin-bottom: 4vh;
+}
+.booking-content__title {
+    font-size: var(--font-size-title);
+    padding: 0 2rem 1rem;
+    font-weight: 300;
+    position: relative;
+}
+.booking-content__title::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 15%;
+    height: 0.2rem;
+    width: 30%;
+background-color: var(--color-secondary);
+}
+.booking-content__para {
+    padding: 2rem;
+}
+section#booking-content--apar p {
+    color: var(--color-primary);
+}
+section#booking-content p {
+    color: var(--color-primary);
+}
+.booking-content__icons {
+   margin-left: 2rem; 
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+}
+.booking-content__icons--weather,.booking-content__icons--time {
+ display: grid;
+ grid-template-columns: 0.5fr 1fr ;
+ grid-template-rows: 10vh;
+ justify-items: start;
+ align-items: center;
+}
+/* booking date section */
+section#booking-date {
+   grid-column: col-start 8 / center-end ;
+  padding: var(--padding-section);
+  display: grid;
+   grid-template-rows: repeat(1, 1fr);
+}
+.booking-date__contact > p {
+   color: #031F43;
+   font-weight: 600;
+   margin: 0 -4rem;
+   padding: 2rem;
+}
+
+.booking-date__contact {
+    height: 100%;
+    width: 100%;
+    background: url("./img-lsv/searching_2.0/searching_2.0.svg") center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+  
+}
+
+.booking-date__schedule--arrivale,.booking-date__schedule--departure,.booking-date__schedule--guests {
+    display: grid;
+    grid-row-gap: 3vh;
+}
+.booking-date__schedule--arrivale h5,.booking-date__schedule--departure h5,.booking-date__schedule--guests h5 {
+    font-size: calc(1rem + 1vw);
+    text-align: center;
+    font-weight: 600;
+}
+.booking-date__schedule--arrivale > div,.booking-date__schedule--departure > div,.booking-date__schedule--guests > div {
+    background-color: var(--color-secondary);
+    padding: 2rem 4rem ;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    position: relative;
+}
+/* adding arrows */
+.booking-date__schedule--arrivale > div::before,.booking-date__schedule--departure > div::before,.booking-date__schedule--guests > div::before {
+    position: absolute;
+    content: '';
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 1.5rem;
+    border-style: solid;
+    border-color: transparent transparent var(--color-secondary) transparent;
+}
+.booking-date__schedule--arrivale > div p:nth-child(2),.booking-date__schedule--departure > div p:nth-child(2),.booking-date__schedule--guests > div p:nth-child(2) {
+    font-size: 3rem;
+    font-weight: 600;
+}
+.booking-date__contact {
+    z-index: 2;
+    align-self: center;
+}
+
+.booking-date__contact--link:link,.booking-date__contact--link:visited {
+    background-color: var(--color-secondary);
+    color: white;
+    cursor: default;
+    transition: all var(--transition-duration) ease-in-out;
+}
+.booking-date__contact--link:hover,.booking-date__contact--link:active {
+ color: var(--color-secondary);
+ background-color: white;
+ border: 0.1rem var(--color-secondary) solid;
+}
+.booking-date__contact p:first-of-type {
+    margin-top: 4rem;
+
+}
+.booking-date__contact p:first-of-type,.booking-date__contact p:nth-child(2),.booking-date__contact p:nth-child(3) {
+font-size: 2rem;
+
+}
+
+/************** VILLAS SECTION ********************/
+section#villas, section#appartements {
+    overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+    grid-column: container-start / container-end ;
+  grid-gap: 2rem;
+  margin: 4vh 0 4vh 0;
+}
+section#villas h2, section#appartements h2 {
+    color: var(--color-secondary);
+}
+/* *******caret (^) selector */
+div[class^="villas"], div[class^="appartements"] {
+ padding: 2rem;
+  background-size: cover; 
+  transition: transform var(--transition-duration) ease-in-out;
+}
+
+div[class^="villas"]:hover,div[class^="villas"]:active, div[class^="appartements"]:hover,div[class^="appartements"]:active {
+  transform: scale(1.05);
+}
+div[class^="villas"] h2[class^="villas"], div[class^="appartements"] h2[class^="appartements"] {
+    font-size: var(--font-size-title);
+    padding: 0 2rem 1rem 0;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+div[class^="villas"] p[class^="villas"], div[class^="appartements"] p[class^="appartements"] {
+    font-size: 2rem;
+    margin: 1.5rem 0 4rem 0rem;
+    height: 15vh;
+}
+
+div[class^="villas"] a[class^="villas"]:link,div[class^="villas"] a[class^="villas"]:visited, div[class^="appartements"] a[class^="appartements"]:link,div[class^="appartements"] a[class^="appartements"]:visited {
+ display: inline-block;
+ margin-bottom: 2rem;
+ background-color: white;
+ color: var(--color-primary);
+ z-index: 2;
+ overflow: hidden;
+}
+div[class^="villas"] a[class^="villas"]:hover,div[class^="villas"] a[class^="villas"]:active, div[class^="appartements"] a[class^="appartements"]:hover,div[class^="appartements"] a[class^="appartements"]:active {
+    color: white;
+}
+div[class^="villas"] a[class^="villas"]:link::before ,div[class^="villas"] a[class^="villas"]:visited::before, div[class^="appartements"] a[class^="appartements"]:link::before ,div[class^="appartements"] a[class^="appartements"]:visited::before  {
+    content: '';
+    position:absolute ;
+    top: 50%;
+    width: 100%;
+    left: 50%;
+    height: 0%;
+    z-index: -1;
+    background-color: var(--color-secondary);
+    transition: height var(--transition-duration) ease-in-out ;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+div[class^="villas"]:nth-child(2n) a[class^="villas"]:link::before,div[class^="villas"]:nth-child(2n) a[class^="villas"]:visited::before, div[class^="appartements"]:nth-child(2n) a[class^="appartements"]:link::before,div[class^="appartements"]:nth-child(2n) a[class^="appartements"]:visited::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+div[class^="villas"] a[class^="villas"]:hover::before,div[class^="villas"] a[class^="villas"]:active::before, div[class^="appartements"] a[class^="appartements"]:hover::before,div[class^="appartements"] a[class^="appartements"]:active::before {
+    height: 400%;
+}
+/* background of the villas /img-lsv/Villas/villa--1.jpg */
+.villas__villa-1 {
+    background:url("/img-lsv/Villas/villa--1.jpg");
+    background-position: center;
+}
+.villas__villa-2 {
+    background:url("/img-lsv/Villas/villa--11.jpg") ;
+}
+.villas__villa-3 {
+    background:url("/img-lsv/Villas/villa--12.jpg");
+   
+}
+.villas__villa-4 {
+    background:url("/img-lsv/Villas/villa--2.jpg");
+    background-position: center;
+    
+}
+.villas__villa-5 {
+    background:url("/img-lsv/Villas/villa--21.jpg") ;
+    background-position: center;
+}
+.villas__villa-6 {
+    background:url("/img-lsv/Villas/villa--22.jpg") ;
+    background-position: center;
+}
+/**** background of the appartements *********/
+.appartements__appartements-1 {
+    background: url("/img-lsv/appartements/appartement--1.jpg");
+    background-position: center;
+}
+.appartements__appartements-2 {
+    background: url("/img-lsv/appartements/appartement--11.jpg");
+    background-position: center;
+}
+.appartements__appartements-3 {
+    background: url("/img-lsv/appartements/appartement--12.jpg");
+}
+.appartements__appartements-4 {
+    background: url("/img-lsv/appartements/appartement--2.jpg");
+    background-position: center;
+}
+.appartements__appartements-5 {
+    background: url("/img-lsv/appartements/appartement--21.jpg");
+    background-position: center;
+}
+.appartements__appartements-6 {
+    background: url("/img-lsv/appartements/appartement--22.jpg");
+   
+}
+/* MOTTO SECTION */
+section#motto {
+    background-color: var(--color-primary) ;
+    grid-column: container-start / container-end ;
+    padding: 10vh 3vw;
+}
+.motto__content {
+    width: 80%;
+    margin: 0 auto ;
+    text-align: center;
+}
+.motto__content--title {
+ font-size: var(--font-size-title);
+ padding: 0 2rem 1rem;
+ font-weight: 500;
+ color: white;
+ text-transform: uppercase;
+ margin-bottom: 2rem;
+ position: relative;
+}
+.motto__content--title::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 45%;
+    width: 10%;
+    height: 0.2rem;
+    background-color: var(--color-quaternary);
+}
+/* **********************EVENTS CONTENT SECTIONS *****************/
+section#events-content, section#features-content {
+    background-color: var(--color-primary);
+    grid-column: container-start / col-end 9 ;
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+}
+section#events-content > div, section#features-content > div {
+    padding: var(--padding-section);
+    display: grid;
+    grid-template-areas: 
+    "title"  
+    "para";
+    grid-row-gap: 4vh ;
+    align-items: center;
+    justify-items: start;
+}
+section#events-content > div:first-child {
+    background: linear-gradient(var(--color-tertiary-m-light),var(--color-tertiary-m-light)), url(./img-lsv/event/beach-party.jpg) ;
+    border-right: solid 0.2rem var(--color-tertiary);
+}
+section#events-content > div:last-child {
+    background: linear-gradient(var(--color-tertiary-m-light),var(--color-tertiary-m-light)),url(./img-lsv/event/culture-dicovery.jpg);
+}
+section#events-content > div:first-child,section#events-content > div:last-child {
+    background-size: cover;
+    background-position: top;
+
+    border-left: solid 0.2rem var(--color-tertiary);
+}
+
+/* estaross selector /*/ 
+section#events-content > div h2[class*=title], section#features-content > div h2[class*=title]{
+  grid-area: title ;
+  font-size: var(--font-size-title);
+  font-weight: 500;
+  color: white;
+}
+section#events-content > div p[class*=para], section#features-content > div p[class*=para]{
+ grid-area: para;
+ color: white ;
+ font-weight: 500;
+}
+ /* EVENTS TEXT SECTIONS */
+ section#events-text,
+ section#features-text {
+   background-color: var(--color-tertiary);
+   grid-column: col-start 10 / center-end;
+ 
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: 1fr;
+   place-items: center;
+ }
+ 
+ .event-text__content,
+ .features-text__content {
+   transform: rotate(90deg);
+ }
+ 
+ .event-text__content--title,
+ .gallery-text__content--title,
+ .features-text__content--title {
+   font-size: var(--font-size-title);
+   font-weight: 500;
+   color: white;
+   letter-spacing: 0.2rem;
+ }
+/* GALLERY TEXT */
+section#gallery-text {
+    background-color: var(--color-primary);
+    grid-column: center-start/ col-start ;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+}
+.gallery-text__content--title {
+    transform: rotate(-90deg);
+}
+
+section#gallery-carousel {
+    height: 90vh;
+    grid-column: col-start 2/ caontainer-start ;
+   overflow: hidden;
+   border: 2px var(--color-secondary);
+   position: relative;
+}
+/* image container */
+div.gallery-carousel__img-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+/* image container list */
+ul.gallery-carousel__img-container--list {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transition:  transform var(--transition-duration) ease-in-out;
+}
+/* image container list items */
+li.gallery-carousel__img-container--list__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/* carousel images  */
+li.gallery-carousel__img-container--list__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* carousel button */
+button.gallery-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: transparent;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+
+}
+/* button right */
+button.gallery-carousel__btn--right {
+    right: 0;
+}
+/* carousel nav */
+.gallery-carousel__nav {
+ position: absolute;
+ bottom: 0;
+ left: 50%;
+ height: 5%;
+ margin-bottom: 1rem;
+ transform: translateX(-50%);
+ display: grid;
+ grid-template-rows: 1fr;
+ grid-template-columns: repeat(10, 1fr);
+ grid-gap: 3rem;
+}
+/* carousel nav buttons */
+.gallery-carousel__nav--btn {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: var(--color-secondary);
+    cursor: pointer;
+    border: none;
+}
+/* current button/image */
+.current--img {
+    background-color: var(--color-primary);
+}
+/* Features CONTENT SECTIONS */
+section#features-content > div:first-child {
+    background: linear-gradient(var(--color-secondary-m-light),var(--color-secondary-m-light)), url(./img-lsv/Features/kayak-bejaia.jpg) ;
+    border-right: solid 0.2rem var(--color-secondary);
+}
+section#features-content > div:last-child {
+    background: linear-gradient(var(--color-secondary-m-light),var(--color-secondary-m-light)),url(./img-lsv/Features/surfing.jpg);
+}
+section#features-content > div:first-child,section#features-content > div:last-child {
+    background-size: cover;
+    background-position: left;
+    border-left: solid 0.2rem var(--color-secondary);
+}
+section#features-text {
+    background-color: var(--color-secondary);
+ }
+
+/* TESTIMONIALS SECTION */
+section#testimonial {
+    background-color: var(--color-quaternary);
+    grid-column: container-start / container-end ;
+    height:400px;   
+}
+/*@@##$$%%^^&&**@@##$$%%^^&&**^^ Footer Section ^^**@@##$$%%^^&&**@@##$$%%^^&&*/
+footer#footer {
+    background-color: var(--color-primary);
+    grid-column: container-start / container-end;
+    padding: 6vh 4vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+  
+  .footer__social--link:link,
+  .footer__social--link:visited {
+    display: inline-block;
+    background-color: var(--color-secondary);
+    border-radius: 4rem;
+    margin-right: 1rem;
+    box-shadow: 0.5rem 0.5rem 2rem 0.5rem var(--color-secondary-m-light),
+      -0.5rem -0.5rem 2rem 0.5rem var(--color-secondary-m-light);
+    transform: scale(0.8);
+    animation: social 3s linear infinite;
+  }
+  
+  .footer__social--link i {
+    font-size: 2rem;
+    color: var(--color-primary);
+  }
+  
+  @keyframes social {
+    0% {
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .footer__social--link:link:nth-child(1),
+  .footer__social--link:visited:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .footer__social--link:link:nth-child(2),
+  .footer__social--link:visited:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .footer__social--link:link:nth-child(3),
+  .footer__social--link:visited:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  .footer__social--link:link:nth-child(4),
+  .footer__social--link:visited:nth-child(4) {
+    animation-delay: 0.9s;
+  }
+/* MEDIA QUARIERS */
+/* 1000px */
+@media screen and (min-width : 1920px) {
+    .booking-date__contact p:first-of-type, .booking-date__contact p:nth-child(2), .booking-date__contact p:nth-child(3) {
+        font-size: calc(1rem + 1vw);
+        font-weight: 600;
+    }
+    .booking-content__title {
+        transform: translateX(100%);
+        left: -50%;
+    }
+    .booking-content__title::after {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 25%;
+        height: 0.2rem;
+        width: 30%;
+    background-color: var(--color-secondary);
+    }
+    /* fixing hieght bug for buttons */
+    div[class^="villas"] span[class^="villas"] {
+       margin-bottom: 100rem;
+    }
+}
+@media screen and (max-width : 1000px) {
+    /* all links */
+    a:link,a:visited {
+        font-size: calc(1rem + 1vw);
+    } 
+    .booking-date__contact p:first-of-type, .booking-date__contact p:nth-child(2), .booking-date__contact p:nth-child(3) {
+        font-size: calc(1rem + 1vw);
+        font-weight: 600;
+    }
+}
+
+/* 800px */
+@media screen and (max-width : 800px) {
+    /* booking content */
+    section#booking-content {
+        padding: 4vh 3vw;
+
+        grid-column: center-start / center-end;
+    }
+    .booking-content__title {
+        text-align: center;
+    }
+    .booking-content__title::after {
+       width: 27%;
+       left: 36%;
+       
+    }
+        /* booking date */
+        section#booking-date {
+            padding: 4vh 3vw;
+            grid-row-gap: 7vh;
+            grid-column: center-start / center-end;
+        }
+        .booking-date__contact {
+            background: url("/img-lsv/searching_2.0/searching_2.0.svg") center no-repeat;
+            height: 40vh;
+           background-size: cover;
+        }
+        .booking-date__contact p {
+            margin-left: 1vw;
+        }
+        /* making booking-date__schedule smaller */
+        .booking-date__schedule--arrivale > div,.booking-date__schedule--departure > div,.booking-date__schedule--guests > div{
+            padding: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: min-content;
+            grid-column-gap: 2vw;
+            place-items: center;
+        }
+        /* villas section  */
+        section#villas {
+            grid-gap: 0;
+        }
+         
+}
+
+/* 600px */
+@media screen and (max-width : 600px) {
+    /*  header sectino  */
+    .header__logo__content--content__para {
+      font-size: 2rem;
+    }
+    section#booking-date {
+        grid-template-rows: min-content;
+    }
+     /* booking content section */
+     .booking-date__schedule--arrivale > div,.booking-date__schedule--departure > div,.booking-date__schedule--guests > div {
+         padding: 4rem;
+         grid-template-columns: min-content;
+     }
+     /* villas section font size */
+     div[class^="villas"] p[class^="villas"] {
+       margin: 1.2rem 0 4rem 0;
+   }
+    /* booking date section */
+    /* motto section */
+    /* gallery carousel */
+    /* features content */
+    .booking-content__para,
+    div[class^="villas"] p[class^="villas"],
+    .motto__content--para,
+    section#events-content > div p[class*="para"],
+    section#features-content > div p[class*="para"],
+    footer#footer p {
+      font-size: 1.5rem;
+    }
+    section#events-content > div:first-child,section#events-content > div:last-child, section#features-content > div:first-child,section#features-content > div:last-child {
+        border: none;
+    }
+    section#events-content, section#features-content {
+        grid-template-columns: minmax(25rem, 1fr);
+    }
+    section#gallery-carousel,section#events-content,section#features-content {
+        grid-column: center-start / center-end ;
+    }
+    /* events section  */
+    section#events-text,section#gallery-text,section#features-text {
+        display: none;
+    }
+    /* carousel btn left/right icons  */
+    .gallery-carousel__btn i {
+        font-size:5rem ;
+    }
+    /* carousel navigation */
+    .gallery-carousel__nav {
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(5, 1fr );
+        grid-row-gap: 3vh;
+        grid-column-gap: 10vw;
+        height: 12%;
+    }
+}
+
+/* **********FOR TESTING  ONLLY **********/
+/* 400px */
+@media screen and (max-width : 400px){
+    section#booking-content {
+        padding: 0vh 0vw;
+        grid-column: center-start / center-end;
+      }
+    .booking-date__contact p:first-of-type, .booking-date__contact p:nth-child(2), .booking-date__contact p:nth-child(3) {
+        font-size: 1.5rem;
+    }
+    #booking-content--apar,#booking-content {
+        background-color: var(--color-quaternary);
+     grid-column: col-start / container-end;
+     display: grid;
+     grid-template-rows: repeat(3, max-content);
+     grid-gap: 1vh;
+     margin-bottom: 0vh;
+     text-align: center;
+    }
+    .booking-date__schedule {
+        grid-template-columns: repeat(1, 1fr);
+        grid-row-gap: 4vh;
+    }
+.booking-date__contact {
+    justify-self: center;
+    padding: 0 0rem;
+
+}
+/* booking date  */
+.booking-date__contact {
+    background: url("/img-lsv/searching_2.0/searching_2.0.svg") center no-repeat;
+    height: 30vh;
+   background-size: cover;
+}
+/* villas  */
+ section#villas {
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+ }
+}
