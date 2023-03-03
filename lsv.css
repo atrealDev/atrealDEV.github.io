@@ -757,7 +757,7 @@ footer#footer {
     place-items: center;
   }
    
-  footer__social--link { 
+  .footer__social--link { 
      color: var(--color-secondary);
       left : 0 ;
   }
