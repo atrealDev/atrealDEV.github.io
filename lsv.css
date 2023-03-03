@@ -6,6 +6,7 @@
 }
 /* ************UTILITY COMPONNENTs ************/
 :root {
+    scroll-behavior: smooth;
     font-size: 62.5%;
     /*********** custom prop ************/
     /* custom colors */
