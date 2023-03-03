@@ -756,7 +756,12 @@ footer#footer {
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
   }
-  
+   
+  footer + p + a { 
+     color: var(--color-secondary);
+      left : 0 ;
+  }
+
   .footer__social--link:link,
   .footer__social--link:visited {
     display: inline-block;
